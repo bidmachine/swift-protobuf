@@ -54,7 +54,7 @@ public protocol FieldType {
 public protocol MapKeyType: FieldType {
     /// A comparison function for where order is needed.  Can't use `Comparable`
     /// because `Bool` doesn't conform, and since it is `public` there is no way
-    /// to add a conformance internal to SwiftProtobuf.
+    /// to add a conformance internal to BidMachineModules.
     static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool
 }
 

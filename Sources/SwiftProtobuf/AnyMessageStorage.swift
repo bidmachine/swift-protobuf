@@ -136,7 +136,7 @@ internal class AnyMessageStorage {
     // Note: Unlike contentJSON below, binary does not bother to capture the
     // decoding options. This is because the actual binary format is the binary
     // blob, i.e. - when decoding from binary, the spec doesn't include decoding
-    // the binary blob, it is pass through. Instead there is a public api for
+    // the binary blob, it is pass through. Instead there is a internal api for
     // unpacking that takes new options when a developer decides to decode it.
     case binary(Data)
     // a message
@@ -333,7 +333,7 @@ extension AnyMessageStorage {
   //    the Swift, Objective-C, and Go runtimes all tend to have random
   //    orders, so the messages could be identical, but in binary form
   //    they could differ.
-  public func hash(into hasher: inout Hasher) {
+  internal func hash(into hasher: inout Hasher) {
     if !_typeURL.isEmpty {
       hasher.combine(_typeURL)
     }

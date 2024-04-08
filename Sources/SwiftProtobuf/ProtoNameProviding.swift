@@ -15,7 +15,7 @@
 /// names for their fields. This allows these names to be pulled out into
 /// extensions in separate files so that users can omit them in release builds
 /// (reducing bloat and minimizing leaks of field names).
-public protocol _ProtoNameProviding {
+internal protocol _ProtoNameProviding {
 
   /// The mapping between field numbers and proto/JSON field names defined in
   /// the conforming message type.

@@ -15,25 +15,25 @@
 import Foundation
 
 /// SwiftProtobuf Internal: Support for Encoding/Decoding.
-public struct _ProtobufMap<KeyType: MapKeyType, ValueType: FieldType>
+internal struct _ProtobufMap<KeyType: MapKeyType, ValueType: FieldType>
 {
-    public typealias Key = KeyType.BaseType
-    public typealias Value = ValueType.BaseType
-    public typealias BaseType = Dictionary<Key, Value>
+    internal typealias Key = KeyType.BaseType
+    internal typealias Value = ValueType.BaseType
+    internal typealias BaseType = Dictionary<Key, Value>
 }
 
 /// SwiftProtobuf Internal: Support for Encoding/Decoding.
-public struct _ProtobufMessageMap<KeyType: MapKeyType, ValueType: Message & Hashable>
+internal struct _ProtobufMessageMap<KeyType: MapKeyType, ValueType: Message & Hashable>
 {
-    public typealias Key = KeyType.BaseType
-    public typealias Value = ValueType
-    public typealias BaseType = Dictionary<Key, Value>
+    internal typealias Key = KeyType.BaseType
+    internal typealias Value = ValueType
+    internal typealias BaseType = Dictionary<Key, Value>
 }
 
 /// SwiftProtobuf Internal: Support for Encoding/Decoding.
-public struct _ProtobufEnumMap<KeyType: MapKeyType, ValueType: Enum>
+internal struct _ProtobufEnumMap<KeyType: MapKeyType, ValueType: Enum>
 {
-    public typealias Key = KeyType.BaseType
-    public typealias Value = ValueType
-    public typealias BaseType = Dictionary<Key, Value>
+    internal typealias Key = KeyType.BaseType
+    internal typealias Value = ValueType
+    internal typealias BaseType = Dictionary<Key, Value>
 }

@@ -13,14 +13,14 @@
 // -----------------------------------------------------------------------------
 
 /// Options for JSONEncoding.
-public struct JSONEncodingOptions {
+internal struct JSONEncodingOptions {
 
   /// Always print enums as ints. By default they are printed as strings.
-  public var alwaysPrintEnumsAsInts: Bool = false
+  internal var alwaysPrintEnumsAsInts: Bool = false
 
   /// Whether to preserve proto field names.
   /// By default they are converted to JSON(lowerCamelCase) names.
-  public var preserveProtoFieldNames: Bool = false
+  internal var preserveProtoFieldNames: Bool = false
 
-  public init() {}
+  internal init() {}
 }

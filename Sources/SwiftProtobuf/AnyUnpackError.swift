@@ -21,7 +21,7 @@
 /// message.  At this time, any error can occur that might have occurred from a
 /// regular decoding operation.  There are also other errors that can occur due
 /// to problems with the `Any` value's structure.
-public enum AnyUnpackError: Error {
+internal enum AnyUnpackError: Error {
   /// The `type_url` field in the `Google_Protobuf_Any` message did not match
   /// the message type provided to the `unpack()` method.
   case typeMismatch

@@ -31,7 +31,7 @@ private let asciiUpperA = UInt8(ascii: "A")
 private let tabSize = 2
 private let tab = [UInt8](repeating: asciiSpace, count: tabSize)
 
-/// TextFormatEncoder has no public members.
+/// TextFormatEncoder has no internal members.
 internal struct TextFormatEncoder {
     private var data = [UInt8]()
     private var indentString: [UInt8] = []

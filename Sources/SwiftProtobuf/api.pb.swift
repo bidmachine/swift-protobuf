@@ -44,8 +44,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.ProtobufAPIVersionCheck {
-  struct _2: BidMachineModules.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachine.ProtobufAPIVersionCheck {
+  struct _2: BidMachine.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -58,20 +58,20 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.Protob
 /// sometimes simply referred to as "APIs" in other contexts, such as the name of
 /// this message itself. See https://cloud.google.com/apis/design/glossary for
 /// detailed terminology.
-public struct Google_Protobuf_Api {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Api {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The fully qualified name of this interface, including package name
   /// followed by the interface's simple name.
-  public var name: String = String()
+  internal var name: String = String()
 
   /// The methods of this interface, in unspecified order.
-  public var methods: [Google_Protobuf_Method] = []
+  internal var methods: [Google_Protobuf_Method] = []
 
   /// Any metadata attached to the interface.
-  public var options: [Google_Protobuf_Option] = []
+  internal var options: [Google_Protobuf_Option] = []
 
   /// A version string for this interface. If specified, must have the form
   /// `major-version.minor-version`, as in `1.10`. If the minor version is
@@ -92,62 +92,62 @@ public struct Google_Protobuf_Api {
   /// `google.feature.v1`. For major versions 0 and 1, the suffix can
   /// be omitted. Zero major versions must only be used for
   /// experimental, non-GA interfaces.
-  public var version: String = String()
+  internal var version: String = String()
 
   /// Source context for the protocol buffer service represented by this
   /// message.
-  public var sourceContext: Google_Protobuf_SourceContext {
+  internal var sourceContext: Google_Protobuf_SourceContext {
     get {return _sourceContext ?? Google_Protobuf_SourceContext()}
     set {_sourceContext = newValue}
   }
   /// Returns true if `sourceContext` has been explicitly set.
-  public var hasSourceContext: Bool {return self._sourceContext != nil}
+  internal var hasSourceContext: Bool {return self._sourceContext != nil}
   /// Clears the value of `sourceContext`. Subsequent reads from it will return its default value.
-  public mutating func clearSourceContext() {self._sourceContext = nil}
+  internal mutating func clearSourceContext() {self._sourceContext = nil}
 
   /// Included interfaces. See [Mixin][].
-  public var mixins: [Google_Protobuf_Mixin] = []
+  internal var mixins: [Google_Protobuf_Mixin] = []
 
   /// The source syntax of the service.
-  public var syntax: Google_Protobuf_Syntax = .proto2
+  internal var syntax: Google_Protobuf_Syntax = .proto2
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 
   fileprivate var _sourceContext: Google_Protobuf_SourceContext? = nil
 }
 
 /// Method represents a method of an API interface.
-public struct Google_Protobuf_Method {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Method {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The simple name of this method.
-  public var name: String = String()
+  internal var name: String = String()
 
   /// A URL of the input message type.
-  public var requestTypeURL: String = String()
+  internal var requestTypeURL: String = String()
 
   /// If true, the request is streamed.
-  public var requestStreaming: Bool = false
+  internal var requestStreaming: Bool = false
 
   /// The URL of the output message type.
-  public var responseTypeURL: String = String()
+  internal var responseTypeURL: String = String()
 
   /// If true, the response is streamed.
-  public var responseStreaming: Bool = false
+  internal var responseStreaming: Bool = false
 
   /// Any metadata attached to the method.
-  public var options: [Google_Protobuf_Option] = []
+  internal var options: [Google_Protobuf_Option] = []
 
   /// The source syntax of this method.
-  public var syntax: Google_Protobuf_Syntax = .proto2
+  internal var syntax: Google_Protobuf_Syntax = .proto2
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 /// Declares an API Interface to be included in this interface. The including
@@ -228,21 +228,21 @@ public struct Google_Protobuf_Method {
 ///       }
 ///       ...
 ///     }
-public struct Google_Protobuf_Mixin {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Mixin {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The fully qualified name of the interface which is included.
-  public var name: String = String()
+  internal var name: String = String()
 
   /// If non-empty specifies a path under which inherited HTTP paths
   /// are rooted.
-  public var root: String = String()
+  internal var root: String = String()
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -255,9 +255,9 @@ extension Google_Protobuf_Mixin: @unchecked Sendable {}
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Api: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Api"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Api: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Api"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "methods"),
     3: .same(proto: "options"),
@@ -267,7 +267,7 @@ extension Google_Protobuf_Api: BidMachineModules.Message, BidMachineModules._Mes
     7: .same(proto: "syntax"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -285,7 +285,7 @@ extension Google_Protobuf_Api: BidMachineModules.Message, BidMachineModules._Mes
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -314,7 +314,7 @@ extension Google_Protobuf_Api: BidMachineModules.Message, BidMachineModules._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Api, rhs: Google_Protobuf_Api) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Api, rhs: Google_Protobuf_Api) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.methods != rhs.methods {return false}
     if lhs.options != rhs.options {return false}
@@ -327,9 +327,9 @@ extension Google_Protobuf_Api: BidMachineModules.Message, BidMachineModules._Mes
   }
 }
 
-extension Google_Protobuf_Method: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Method"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Method: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Method"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "name"),
     2: .standard(proto: "request_type_url"),
     3: .standard(proto: "request_streaming"),
@@ -339,7 +339,7 @@ extension Google_Protobuf_Method: BidMachineModules.Message, BidMachineModules._
     7: .same(proto: "syntax"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -357,7 +357,7 @@ extension Google_Protobuf_Method: BidMachineModules.Message, BidMachineModules._
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }
@@ -382,7 +382,7 @@ extension Google_Protobuf_Method: BidMachineModules.Message, BidMachineModules._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Method, rhs: Google_Protobuf_Method) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Method, rhs: Google_Protobuf_Method) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.requestTypeURL != rhs.requestTypeURL {return false}
     if lhs.requestStreaming != rhs.requestStreaming {return false}
@@ -395,14 +395,14 @@ extension Google_Protobuf_Method: BidMachineModules.Message, BidMachineModules._
   }
 }
 
-extension Google_Protobuf_Mixin: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Mixin"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Mixin: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Mixin"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "root"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -415,7 +415,7 @@ extension Google_Protobuf_Mixin: BidMachineModules.Message, BidMachineModules._M
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }
@@ -425,7 +425,7 @@ extension Google_Protobuf_Mixin: BidMachineModules.Message, BidMachineModules._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Mixin, rhs: Google_Protobuf_Mixin) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Mixin, rhs: Google_Protobuf_Mixin) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.root != rhs.root {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

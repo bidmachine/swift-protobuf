@@ -12,7 +12,7 @@
 ///
 // -----------------------------------------------------------------------------
 
-public enum JSONEncodingError: Error {
+internal enum JSONEncodingError: Error {
     /// Any fields that were decoded from binary format cannot be
     /// re-encoded into JSON unless the object they hold is a
     /// well-known type or a type registered with via

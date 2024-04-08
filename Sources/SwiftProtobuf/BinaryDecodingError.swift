@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------
 
 /// Describes errors that can occur when decoding a message from binary format.
-public enum BinaryDecodingError: Error {
+internal enum BinaryDecodingError: Error {
   /// Extraneous data remained after decoding should have been complete.
   case trailingGarbage
 

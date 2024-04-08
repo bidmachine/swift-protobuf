@@ -44,8 +44,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.ProtobufAPIVersionCheck {
-  struct _2: BidMachineModules.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachine.ProtobufAPIVersionCheck {
+  struct _2: BidMachine.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -53,25 +53,25 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.Protob
 /// `Value` type union.
 ///
 /// The JSON representation for `NullValue` is JSON `null`.
-public enum Google_Protobuf_NullValue: BidMachineModules.Enum {
-  public typealias RawValue = Int
+internal enum Google_Protobuf_NullValue: BidMachine.Enum {
+  internal typealias RawValue = Int
 
   /// Null value.
   case nullValue // = 0
   case UNRECOGNIZED(Int)
 
-  public init() {
+  internal init() {
     self = .nullValue
   }
 
-  public init?(rawValue: Int) {
+  internal init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .nullValue
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
-  public var rawValue: Int {
+  internal var rawValue: Int {
     switch self {
     case .nullValue: return 0
     case .UNRECOGNIZED(let i): return i
@@ -84,7 +84,7 @@ public enum Google_Protobuf_NullValue: BidMachineModules.Enum {
 
 extension Google_Protobuf_NullValue: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static let allCases: [Google_Protobuf_NullValue] = [
+  internal static let allCases: [Google_Protobuf_NullValue] = [
     .nullValue,
   ]
 }
@@ -99,17 +99,17 @@ extension Google_Protobuf_NullValue: CaseIterable {
 /// with the proto support for the language.
 ///
 /// The JSON representation for `Struct` is JSON object.
-public struct Google_Protobuf_Struct {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Struct {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Unordered map of dynamically typed values.
-  public var fields: Dictionary<String,Google_Protobuf_Value> = [:]
+  internal var fields: Dictionary<String,Google_Protobuf_Value> = [:]
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 /// `Value` represents a dynamically typed value which can be either
@@ -118,16 +118,16 @@ public struct Google_Protobuf_Struct {
 /// variants. Absence of any variant indicates an error.
 ///
 /// The JSON representation for `Value` is JSON value.
-public struct Google_Protobuf_Value {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Value {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The kind of value.
-  public var kind: Google_Protobuf_Value.OneOf_Kind? = nil
+  internal var kind: Google_Protobuf_Value.OneOf_Kind? = nil
 
   /// Represents a null value.
-  public var nullValue: Google_Protobuf_NullValue {
+  internal var nullValue: Google_Protobuf_NullValue {
     get {
       if case .nullValue(let v)? = kind {return v}
       return .nullValue
@@ -136,7 +136,7 @@ public struct Google_Protobuf_Value {
   }
 
   /// Represents a double value.
-  public var numberValue: Double {
+  internal var numberValue: Double {
     get {
       if case .numberValue(let v)? = kind {return v}
       return 0
@@ -145,7 +145,7 @@ public struct Google_Protobuf_Value {
   }
 
   /// Represents a string value.
-  public var stringValue: String {
+  internal var stringValue: String {
     get {
       if case .stringValue(let v)? = kind {return v}
       return String()
@@ -154,7 +154,7 @@ public struct Google_Protobuf_Value {
   }
 
   /// Represents a boolean value.
-  public var boolValue: Bool {
+  internal var boolValue: Bool {
     get {
       if case .boolValue(let v)? = kind {return v}
       return false
@@ -163,7 +163,7 @@ public struct Google_Protobuf_Value {
   }
 
   /// Represents a structured value.
-  public var structValue: Google_Protobuf_Struct {
+  internal var structValue: Google_Protobuf_Struct {
     get {
       if case .structValue(let v)? = kind {return v}
       return Google_Protobuf_Struct()
@@ -172,7 +172,7 @@ public struct Google_Protobuf_Value {
   }
 
   /// Represents a repeated `Value`.
-  public var listValue: Google_Protobuf_ListValue {
+  internal var listValue: Google_Protobuf_ListValue {
     get {
       if case .listValue(let v)? = kind {return v}
       return Google_Protobuf_ListValue()
@@ -180,10 +180,10 @@ public struct Google_Protobuf_Value {
     set {kind = .listValue(newValue)}
   }
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
   /// The kind of value.
-  public enum OneOf_Kind: Equatable {
+  internal enum OneOf_Kind: Equatable {
     /// Represents a null value.
     case nullValue(Google_Protobuf_NullValue)
     /// Represents a double value.
@@ -198,7 +198,7 @@ public struct Google_Protobuf_Value {
     case listValue(Google_Protobuf_ListValue)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Google_Protobuf_Value.OneOf_Kind, rhs: Google_Protobuf_Value.OneOf_Kind) -> Bool {
+    internal static func ==(lhs: Google_Protobuf_Value.OneOf_Kind, rhs: Google_Protobuf_Value.OneOf_Kind) -> Bool {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
@@ -233,23 +233,23 @@ public struct Google_Protobuf_Value {
   #endif
   }
 
-  public init() {}
+  internal init() {}
 }
 
 /// `ListValue` is a wrapper around a repeated field of values.
 ///
 /// The JSON representation for `ListValue` is JSON array.
-public struct Google_Protobuf_ListValue {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_ListValue {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Repeated field of dynamically typed values.
-  public var values: [Google_Protobuf_Value] = []
+  internal var values: [Google_Protobuf_Value] = []
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -264,47 +264,47 @@ extension Google_Protobuf_ListValue: @unchecked Sendable {}
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_NullValue: BidMachineModules._ProtoNameProviding {
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_NullValue: BidMachine._ProtoNameProviding {
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     0: .same(proto: "NULL_VALUE"),
   ]
 }
 
-extension Google_Protobuf_Struct: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Struct"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Struct: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Struct"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "fields"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeMapField(fieldType: BidMachineModules._ProtobufMessageMap<BidMachineModules.ProtobufString,Google_Protobuf_Value>.self, value: &self.fields) }()
+      case 1: try { try decoder.decodeMapField(fieldType: BidMachine._ProtobufMessageMap<BidMachine.ProtobufString,Google_Protobuf_Value>.self, value: &self.fields) }()
       default: break
       }
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if !self.fields.isEmpty {
-      try visitor.visitMapField(fieldType: BidMachineModules._ProtobufMessageMap<BidMachineModules.ProtobufString,Google_Protobuf_Value>.self, value: self.fields, fieldNumber: 1)
+      try visitor.visitMapField(fieldType: BidMachine._ProtobufMessageMap<BidMachine.ProtobufString,Google_Protobuf_Value>.self, value: self.fields, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Struct, rhs: Google_Protobuf_Struct) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Struct, rhs: Google_Protobuf_Struct) -> Bool {
     if lhs.fields != rhs.fields {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Google_Protobuf_Value: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Value"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Value: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Value"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .standard(proto: "null_value"),
     2: .standard(proto: "number_value"),
     3: .standard(proto: "string_value"),
@@ -313,7 +313,7 @@ extension Google_Protobuf_Value: BidMachineModules.Message, BidMachineModules._M
     6: .standard(proto: "list_value"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -382,7 +382,7 @@ extension Google_Protobuf_Value: BidMachineModules.Message, BidMachineModules._M
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -417,20 +417,20 @@ extension Google_Protobuf_Value: BidMachineModules.Message, BidMachineModules._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Value, rhs: Google_Protobuf_Value) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Value, rhs: Google_Protobuf_Value) -> Bool {
     if lhs.kind != rhs.kind {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Google_Protobuf_ListValue: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ListValue"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_ListValue: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".ListValue"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "values"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -442,14 +442,14 @@ extension Google_Protobuf_ListValue: BidMachineModules.Message, BidMachineModule
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if !self.values.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.values, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_ListValue, rhs: Google_Protobuf_ListValue) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_ListValue, rhs: Google_Protobuf_ListValue) -> Bool {
     if lhs.values != rhs.values {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

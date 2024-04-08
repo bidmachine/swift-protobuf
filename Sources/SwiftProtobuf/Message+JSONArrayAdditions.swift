@@ -26,7 +26,7 @@ extension Message {
   ///   - collection: The list of messages to encode.
   ///   - options: The JSONEncodingOptions to use.
   /// - Throws: `JSONEncodingError` if encoding fails.
-  public static func jsonString<C: Collection>(
+  internal static func jsonString<C: Collection>(
     from collection: C,
     options: JSONEncodingOptions = JSONEncodingOptions()
   ) throws -> String where C.Iterator.Element == Self {
@@ -44,7 +44,7 @@ extension Message {
   ///   - collection: The list of messages to encode.
   ///   - options: The JSONEncodingOptions to use.
   /// - Throws: `JSONEncodingError` if encoding fails.
-  public static func jsonUTF8Data<C: Collection>(
+  internal static func jsonUTF8Data<C: Collection>(
     from collection: C,
     options: JSONEncodingOptions = JSONEncodingOptions()
   ) throws -> Data where C.Iterator.Element == Self {
@@ -65,7 +65,7 @@ extension Message {
   /// - Parameter jsonString: The JSON-formatted string to decode.
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public static func array(
+  internal static func array(
     fromJSONString jsonString: String,
     options: JSONDecodingOptions = JSONDecodingOptions()
   ) throws -> [Self] {
@@ -81,7 +81,7 @@ extension Message {
   /// - Parameter extensions: The extension map to use with this decode
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public static func array(
+  internal static func array(
     fromJSONString jsonString: String,
     extensions: ExtensionMap = SimpleExtensionMap(),
     options: JSONDecodingOptions = JSONDecodingOptions()
@@ -104,7 +104,7 @@ extension Message {
   ///   as UTF-8 encoded text.
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public static func array(
+  internal static func array(
     fromJSONUTF8Data jsonUTF8Data: Data,
     options: JSONDecodingOptions = JSONDecodingOptions()
   ) throws -> [Self] {
@@ -122,7 +122,7 @@ extension Message {
   /// - Parameter extensions: The extension map to use with this decode
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public static func array(
+  internal static func array(
     fromJSONUTF8Data jsonUTF8Data: Data,
     extensions: ExtensionMap = SimpleExtensionMap(),
     options: JSONDecodingOptions = JSONDecodingOptions()

@@ -43,15 +43,15 @@ extension ProtobufWrapper {
 extension Google_Protobuf_DoubleValue:
   ProtobufWrapper, ExpressibleByFloatLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufDouble
-  public typealias FloatLiteralType = WrappedType.BaseType
+  internal typealias WrappedType = ProtobufDouble
+  internal typealias FloatLiteralType = WrappedType.BaseType
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(floatLiteral: FloatLiteralType) {
+  internal init(floatLiteral: FloatLiteralType) {
     self.init(floatLiteral)
   }
 
@@ -72,15 +72,15 @@ extension Google_Protobuf_DoubleValue:
 extension Google_Protobuf_FloatValue:
   ProtobufWrapper, ExpressibleByFloatLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufFloat
-  public typealias FloatLiteralType = Float
+  internal typealias WrappedType = ProtobufFloat
+  internal typealias FloatLiteralType = Float
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(floatLiteral: FloatLiteralType) {
+  internal init(floatLiteral: FloatLiteralType) {
     self.init(floatLiteral)
   }
 
@@ -101,15 +101,15 @@ extension Google_Protobuf_FloatValue:
 extension Google_Protobuf_Int64Value:
   ProtobufWrapper, ExpressibleByIntegerLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufInt64
-  public typealias IntegerLiteralType = WrappedType.BaseType
+  internal typealias WrappedType = ProtobufInt64
+  internal typealias IntegerLiteralType = WrappedType.BaseType
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(integerLiteral: IntegerLiteralType) {
+  internal init(integerLiteral: IntegerLiteralType) {
     self.init(integerLiteral)
   }
 
@@ -121,15 +121,15 @@ extension Google_Protobuf_Int64Value:
 extension Google_Protobuf_UInt64Value:
   ProtobufWrapper, ExpressibleByIntegerLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufUInt64
-  public typealias IntegerLiteralType = WrappedType.BaseType
+  internal typealias WrappedType = ProtobufUInt64
+  internal typealias IntegerLiteralType = WrappedType.BaseType
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(integerLiteral: IntegerLiteralType) {
+  internal init(integerLiteral: IntegerLiteralType) {
     self.init(integerLiteral)
   }
 
@@ -141,15 +141,15 @@ extension Google_Protobuf_UInt64Value:
 extension Google_Protobuf_Int32Value:
   ProtobufWrapper, ExpressibleByIntegerLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufInt32
-  public typealias IntegerLiteralType = WrappedType.BaseType
+  internal typealias WrappedType = ProtobufInt32
+  internal typealias IntegerLiteralType = WrappedType.BaseType
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(integerLiteral: IntegerLiteralType) {
+  internal init(integerLiteral: IntegerLiteralType) {
     self.init(integerLiteral)
   }
 
@@ -161,15 +161,15 @@ extension Google_Protobuf_Int32Value:
 extension Google_Protobuf_UInt32Value:
   ProtobufWrapper, ExpressibleByIntegerLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufUInt32
-  public typealias IntegerLiteralType = WrappedType.BaseType
+  internal typealias WrappedType = ProtobufUInt32
+  internal typealias IntegerLiteralType = WrappedType.BaseType
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(integerLiteral: IntegerLiteralType) {
+  internal init(integerLiteral: IntegerLiteralType) {
     self.init(integerLiteral)
   }
 
@@ -181,15 +181,15 @@ extension Google_Protobuf_UInt32Value:
 extension Google_Protobuf_BoolValue:
   ProtobufWrapper, ExpressibleByBooleanLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufBool
-  public typealias BooleanLiteralType = Bool
+  internal typealias WrappedType = ProtobufBool
+  internal typealias BooleanLiteralType = Bool
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(booleanLiteral: Bool) {
+  internal init(booleanLiteral: Bool) {
     self.init(booleanLiteral)
   }
 
@@ -201,25 +201,25 @@ extension Google_Protobuf_BoolValue:
 extension Google_Protobuf_StringValue:
   ProtobufWrapper, ExpressibleByStringLiteral, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufString
-  public typealias StringLiteralType = String
-  public typealias ExtendedGraphemeClusterLiteralType = String
-  public typealias UnicodeScalarLiteralType = String
+  internal typealias WrappedType = ProtobufString
+  internal typealias StringLiteralType = String
+  internal typealias ExtendedGraphemeClusterLiteralType = String
+  internal typealias UnicodeScalarLiteralType = String
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }
 
-  public init(stringLiteral: String) {
+  internal init(stringLiteral: String) {
     self.init(stringLiteral)
   }
 
-  public init(extendedGraphemeClusterLiteral: String) {
+  internal init(extendedGraphemeClusterLiteral: String) {
     self.init(extendedGraphemeClusterLiteral)
   }
 
-  public init(unicodeScalarLiteral: String) {
+  internal init(unicodeScalarLiteral: String) {
     self.init(unicodeScalarLiteral)
   }
 
@@ -232,9 +232,9 @@ extension Google_Protobuf_StringValue:
 
 extension Google_Protobuf_BytesValue: ProtobufWrapper, _CustomJSONCodable {
 
-  public typealias WrappedType = ProtobufBytes
+  internal typealias WrappedType = ProtobufBytes
 
-  public init(_ value: WrappedType.BaseType) {
+  internal init(_ value: WrappedType.BaseType) {
     self.init()
     self.value = value
   }

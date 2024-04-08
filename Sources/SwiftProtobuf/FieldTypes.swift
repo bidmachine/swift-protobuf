@@ -28,7 +28,7 @@ import Foundation
 
 // Note: The protobuf- and JSON-specific methods here are defined
 // in ProtobufTypeAdditions.swift and JSONTypeAdditions.swift
-public protocol FieldType {
+internal protocol FieldType {
     // The Swift type used to store data for this field.  For example,
     // proto "sint32" fields use Swift "Int32" type.
     associatedtype BaseType: Hashable
@@ -51,16 +51,16 @@ public protocol FieldType {
 ///
 /// Marker protocol for types that can be used as map keys
 ///
-public protocol MapKeyType: FieldType {
+internal protocol MapKeyType: FieldType {
     /// A comparison function for where order is needed.  Can't use `Comparable`
     /// because `Bool` doesn't conform, and since it is `public` there is no way
-    /// to add a conformance internal to BidMachineModules.
+    /// to add a conformance internal to BidMachine.
     static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool
 }
 
 // Default impl for anything `Comparable`
 extension MapKeyType where BaseType: Comparable {
-    public static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool {
+    internal static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool {
         return lhs < rhs
     }
 }
@@ -68,7 +68,7 @@ extension MapKeyType where BaseType: Comparable {
 ///
 /// Marker Protocol for types that can be used as map values.
 ///
-public protocol MapValueType: FieldType {
+internal protocol MapValueType: FieldType {
 }
 
 //
@@ -79,22 +79,22 @@ public protocol MapValueType: FieldType {
 ///
 /// Float traits
 ///
-public struct ProtobufFloat: FieldType, MapValueType {
-    public typealias BaseType = Float
-    public static var proto3DefaultValue: Float {return 0.0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufFloat: FieldType, MapValueType {
+    internal typealias BaseType = Float
+    internal static var proto3DefaultValue: Float {return 0.0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularFloatField(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedFloatField(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularFloatField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedFloatField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedFloatField(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -102,22 +102,22 @@ public struct ProtobufFloat: FieldType, MapValueType {
 ///
 /// Double
 ///
-public struct ProtobufDouble: FieldType, MapValueType {
-    public typealias BaseType = Double
-    public static var proto3DefaultValue: Double {return 0.0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufDouble: FieldType, MapValueType {
+    internal typealias BaseType = Double
+    internal static var proto3DefaultValue: Double {return 0.0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularDoubleField(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedDoubleField(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularDoubleField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedDoubleField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedDoubleField(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -125,22 +125,22 @@ public struct ProtobufDouble: FieldType, MapValueType {
 ///
 /// Int32
 ///
-public struct ProtobufInt32: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int32
-    public static var proto3DefaultValue: Int32 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufInt32: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int32
+    internal static var proto3DefaultValue: Int32 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularInt32Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedInt32Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedInt32Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -149,22 +149,22 @@ public struct ProtobufInt32: FieldType, MapKeyType, MapValueType {
 /// Int64
 ///
 
-public struct ProtobufInt64: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int64
-    public static var proto3DefaultValue: Int64 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufInt64: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int64
+    internal static var proto3DefaultValue: Int64 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularInt64Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedInt64Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedInt64Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -172,22 +172,22 @@ public struct ProtobufInt64: FieldType, MapKeyType, MapValueType {
 ///
 /// UInt32
 ///
-public struct ProtobufUInt32: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = UInt32
-    public static var proto3DefaultValue: UInt32 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufUInt32: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = UInt32
+    internal static var proto3DefaultValue: UInt32 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularUInt32Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedUInt32Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularUInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedUInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedUInt32Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -196,22 +196,22 @@ public struct ProtobufUInt32: FieldType, MapKeyType, MapValueType {
 /// UInt64
 ///
 
-public struct ProtobufUInt64: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = UInt64
-    public static var proto3DefaultValue: UInt64 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufUInt64: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = UInt64
+    internal static var proto3DefaultValue: UInt64 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularUInt64Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedUInt64Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularUInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedUInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedUInt64Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -219,22 +219,22 @@ public struct ProtobufUInt64: FieldType, MapKeyType, MapValueType {
 ///
 /// SInt32
 ///
-public struct ProtobufSInt32: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int32
-    public static var proto3DefaultValue: Int32 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufSInt32: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int32
+    internal static var proto3DefaultValue: Int32 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularSInt32Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedSInt32Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularSInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedSInt32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedSInt32Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -243,22 +243,22 @@ public struct ProtobufSInt32: FieldType, MapKeyType, MapValueType {
 /// SInt64
 ///
 
-public struct ProtobufSInt64: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int64
-    public static var proto3DefaultValue: Int64 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufSInt64: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int64
+    internal static var proto3DefaultValue: Int64 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularSInt64Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedSInt64Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularSInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedSInt64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedSInt64Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -266,22 +266,22 @@ public struct ProtobufSInt64: FieldType, MapKeyType, MapValueType {
 ///
 /// Fixed32
 ///
-public struct ProtobufFixed32: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = UInt32
-    public static var proto3DefaultValue: UInt32 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufFixed32: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = UInt32
+    internal static var proto3DefaultValue: UInt32 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularFixed32Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedFixed32Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularFixed32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedFixed32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedFixed32Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -289,22 +289,22 @@ public struct ProtobufFixed32: FieldType, MapKeyType, MapValueType {
 ///
 /// Fixed64
 ///
-public struct ProtobufFixed64: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = UInt64
-    public static var proto3DefaultValue: UInt64 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufFixed64: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = UInt64
+    internal static var proto3DefaultValue: UInt64 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularFixed64Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedFixed64Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularFixed64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedFixed64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedFixed64Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -312,22 +312,22 @@ public struct ProtobufFixed64: FieldType, MapKeyType, MapValueType {
 ///
 /// SFixed32
 ///
-public struct ProtobufSFixed32: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int32
-    public static var proto3DefaultValue: Int32 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufSFixed32: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int32
+    internal static var proto3DefaultValue: Int32 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularSFixed32Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedSFixed32Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularSFixed32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedSFixed32Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedSFixed32Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -335,22 +335,22 @@ public struct ProtobufSFixed32: FieldType, MapKeyType, MapValueType {
 ///
 /// SFixed64
 ///
-public struct ProtobufSFixed64: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Int64
-    public static var proto3DefaultValue: Int64 {return 0}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufSFixed64: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Int64
+    internal static var proto3DefaultValue: Int64 {return 0}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularSFixed64Field(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedSFixed64Field(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularSFixed64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedSFixed64Field(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedSFixed64Field(value: value, fieldNumber: fieldNumber)
     }
 }
@@ -358,27 +358,27 @@ public struct ProtobufSFixed64: FieldType, MapKeyType, MapValueType {
 ///
 /// Bool
 ///
-public struct ProtobufBool: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = Bool
-    public static var proto3DefaultValue: Bool {return false}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufBool: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = Bool
+    internal static var proto3DefaultValue: Bool {return false}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularBoolField(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedBoolField(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularBoolField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedBoolField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitPackedBoolField(value: value, fieldNumber: fieldNumber)
     }
 
     /// Custom _lessThan since `Bool` isn't `Comparable`.
-    public static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool {
+    internal static func _lessThan(lhs: BaseType, rhs: BaseType) -> Bool {
         if !lhs {
             return rhs
         }
@@ -389,22 +389,22 @@ public struct ProtobufBool: FieldType, MapKeyType, MapValueType {
 ///
 /// String
 ///
-public struct ProtobufString: FieldType, MapKeyType, MapValueType {
-    public typealias BaseType = String
-    public static var proto3DefaultValue: String {return String()}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufString: FieldType, MapKeyType, MapValueType {
+    internal typealias BaseType = String
+    internal static var proto3DefaultValue: String {return String()}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularStringField(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedStringField(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularStringField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedStringField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         assert(false)
     }
 }
@@ -412,22 +412,22 @@ public struct ProtobufString: FieldType, MapKeyType, MapValueType {
 ///
 /// Bytes
 ///
-public struct ProtobufBytes: FieldType, MapValueType {
-    public typealias BaseType = Data
-    public static var proto3DefaultValue: Data {return Data()}
-    public static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
+internal struct ProtobufBytes: FieldType, MapValueType {
+    internal typealias BaseType = Data
+    internal static var proto3DefaultValue: Data {return Data()}
+    internal static func decodeSingular<D: Decoder>(value: inout BaseType?, from decoder: inout D) throws {
         try decoder.decodeSingularBytesField(value: &value)
     }
-    public static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
+    internal static func decodeRepeated<D: Decoder>(value: inout [BaseType], from decoder: inout D) throws {
         try decoder.decodeRepeatedBytesField(value: &value)
     }
-    public static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitSingular<V: Visitor>(value: BaseType, fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitSingularBytesField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitRepeated<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         try visitor.visitRepeatedBytesField(value: value, fieldNumber: fieldNumber)
     }
-    public static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
+    internal static func visitPacked<V: Visitor>(value: [BaseType], fieldNumber: Int, with visitor: inout V) throws {
         assert(false)
     }
 }

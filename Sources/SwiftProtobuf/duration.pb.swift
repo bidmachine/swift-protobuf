@@ -44,8 +44,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.ProtobufAPIVersionCheck {
-  struct _2: BidMachineModules.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachine.ProtobufAPIVersionCheck {
+  struct _2: BidMachine.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -107,15 +107,15 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.Protob
 /// encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
 /// be expressed in JSON format as "3.000000001s", and 3 seconds and 1
 /// microsecond should be expressed in JSON format as "3.000001s".
-public struct Google_Protobuf_Duration {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Duration {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Signed seconds of the span of time. Must be from -315,576,000,000
   /// to +315,576,000,000 inclusive. Note: these bounds are computed from:
   /// 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
-  public var seconds: Int64 = 0
+  internal var seconds: Int64 = 0
 
   /// Signed fractions of a second at nanosecond resolution of the span
   /// of time. Durations less than one second are represented with a 0
@@ -123,11 +123,11 @@ public struct Google_Protobuf_Duration {
   /// of one second or more, a non-zero value for the `nanos` field must be
   /// of the same sign as the `seconds` field. Must be from -999,999,999
   /// to +999,999,999 inclusive.
-  public var nanos: Int32 = 0
+  internal var nanos: Int32 = 0
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -138,14 +138,14 @@ extension Google_Protobuf_Duration: @unchecked Sendable {}
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Duration: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Duration"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Duration: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Duration"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "seconds"),
     2: .same(proto: "nanos"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -158,7 +158,7 @@ extension Google_Protobuf_Duration: BidMachineModules.Message, BidMachineModules
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if self.seconds != 0 {
       try visitor.visitSingularInt64Field(value: self.seconds, fieldNumber: 1)
     }
@@ -168,7 +168,7 @@ extension Google_Protobuf_Duration: BidMachineModules.Message, BidMachineModules
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Duration, rhs: Google_Protobuf_Duration) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Duration, rhs: Google_Protobuf_Duration) -> Bool {
     if lhs.seconds != rhs.seconds {return false}
     if lhs.nanos != rhs.nanos {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

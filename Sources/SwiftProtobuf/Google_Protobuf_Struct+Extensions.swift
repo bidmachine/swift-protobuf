@@ -14,12 +14,12 @@
 // -----------------------------------------------------------------------------
 
 extension Google_Protobuf_Struct: ExpressibleByDictionaryLiteral {
-  public typealias Key = String
-  public typealias Value = Google_Protobuf_Value
+  internal typealias Key = String
+  internal typealias Value = Google_Protobuf_Value
 
   /// Creates a new `Google_Protobuf_Struct` from a dictionary of string keys to
   /// values of type `Google_Protobuf_Value`.
-  public init(dictionaryLiteral: (String, Google_Protobuf_Value)...) {
+  internal init(dictionaryLiteral: (String, Google_Protobuf_Value)...) {
     self.init()
     for (k,v) in dictionaryLiteral {
       fields[k] = v
@@ -66,7 +66,7 @@ extension Google_Protobuf_Struct {
   /// - Parameter fields: The dictionary from field names to
   ///   `Google_Protobuf_Value` messages that should be used to create the
   ///   `Struct`.
-  public init(fields: [String: Google_Protobuf_Value]) {
+  internal init(fields: [String: Google_Protobuf_Value]) {
     self.init()
     self.fields = fields
   }
@@ -78,7 +78,7 @@ extension Google_Protobuf_Struct {
   /// is found in the `Struct`, or nil if the key is not found. If you assign
   /// nil as the `Value` for the given key, the `Struct` removes that key and
   /// its associated `Value`.
-  public subscript(key: String) -> Google_Protobuf_Value? {
+  internal subscript(key: String) -> Google_Protobuf_Value? {
     get {return fields[key]}
     set(newValue) {fields[key] = newValue}
   }

@@ -12,7 +12,7 @@
 ///
 // -----------------------------------------------------------------------------
 
-public enum JSONDecodingError: Error {
+internal enum JSONDecodingError: Error {
     /// Something was wrong
     case failure
     /// A number could not be parsed

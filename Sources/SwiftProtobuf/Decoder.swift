@@ -43,7 +43,7 @@ import Foundation
 /// do distinguish `Enum`-valued and `Message`-valued maps to avoid
 /// polluting the generated `Enum` and `Message` types with all of the
 /// necessary generic methods to support this.
-public protocol Decoder {
+internal protocol Decoder {
   /// Called by a `oneof` when it already has a value and is being asked to
   /// accept a new value. Some formats require `oneof` decoding to fail in this
   /// case.
@@ -137,7 +137,7 @@ public protocol Decoder {
 /// format, so provide a default implementation simply looping on the
 /// fieldNumbers and feeding through to extension decoding.
 extension Decoder {
-  public mutating func decodeExtensionFieldsAsMessageSet(
+  internal mutating func decodeExtensionFieldsAsMessageSet(
     values: inout ExtensionFieldValueSet,
     messageType: Message.Type
   ) throws {

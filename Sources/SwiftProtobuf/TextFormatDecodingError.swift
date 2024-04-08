@@ -12,7 +12,7 @@
 ///
 // -----------------------------------------------------------------------------
 
-public enum TextFormatDecodingError: Error {
+internal enum TextFormatDecodingError: Error {
     /// Text data could not be parsed
     case malformedText
     /// A number could not be parsed

@@ -206,7 +206,7 @@ extension Google_Protobuf_Timestamp {
   ///
   /// - Parameter seconds: The number of seconds.
   /// - Parameter nanos: The number of nanoseconds.
-  public init(seconds: Int64 = 0, nanos: Int32 = 0) {
+  internal init(seconds: Int64 = 0, nanos: Int32 = 0) {
     self.init()
     self.seconds = seconds
     self.nanos = nanos
@@ -234,7 +234,7 @@ extension Google_Protobuf_Timestamp {
   ///
   /// - Parameter timeIntervalSince1970: The `TimeInterval`, interpreted as
   ///   seconds relative to 00:00:00 UTC on 1 January 1970.
-  public init(timeIntervalSince1970: TimeInterval) {
+  internal init(timeIntervalSince1970: TimeInterval) {
     let sd = floor(timeIntervalSince1970)
     let nd = round((timeIntervalSince1970 - sd) * TimeInterval(nanosPerSecond))
     let (s, n) = normalizeForTimestamp(seconds: Int64(sd), nanos: Int32(nd))
@@ -246,7 +246,7 @@ extension Google_Protobuf_Timestamp {
   ///
   /// - Parameter timeIntervalSinceReferenceDate: The `TimeInterval`,
   ///   interpreted as seconds relative to 00:00:00 UTC on 1 January 2001.
-  public init(timeIntervalSinceReferenceDate: TimeInterval) {
+  internal init(timeIntervalSinceReferenceDate: TimeInterval) {
     let sd = floor(timeIntervalSinceReferenceDate)
     let nd = round(
       (timeIntervalSinceReferenceDate - sd) * TimeInterval(nanosPerSecond))
@@ -263,7 +263,7 @@ extension Google_Protobuf_Timestamp {
   /// the given `Date`.
   ///
   /// - Parameter date: The `Date` with which to initialize the timestamp.
-  public init(date: Date) {
+  internal init(date: Date) {
     // Note: Internally, Date uses the "reference date," not the 1970 date.
     // We use it when interacting with Dates so that Date doesn't perform
     // any double arithmetic on our behalf, which might cost us precision.
@@ -272,20 +272,20 @@ extension Google_Protobuf_Timestamp {
   }
 
   /// The interval between the timestamp and 00:00:00 UTC on 1 January 1970.
-  public var timeIntervalSince1970: TimeInterval {
+  internal var timeIntervalSince1970: TimeInterval {
     return TimeInterval(self.seconds) +
       TimeInterval(self.nanos) / TimeInterval(nanosPerSecond)
   }
 
   /// The interval between the timestamp and 00:00:00 UTC on 1 January 2001.
-  public var timeIntervalSinceReferenceDate: TimeInterval {
+  internal var timeIntervalSinceReferenceDate: TimeInterval {
     return TimeInterval(
       self.seconds - Int64(Date.timeIntervalBetween1970AndReferenceDate)) +
       TimeInterval(self.nanos) / TimeInterval(nanosPerSecond)
   }
 
   /// A `Date` initialized to the same time as the timestamp.
-  public var date: Date {
+  internal var date: Date {
     return Date(
       timeIntervalSinceReferenceDate: self.timeIntervalSinceReferenceDate)
   }
@@ -303,7 +303,7 @@ private func normalizeForTimestamp(
   return (seconds: s, nanos: n)
 }
 
-public func + (
+internal func + (
   lhs: Google_Protobuf_Timestamp,
   rhs: Google_Protobuf_Duration
 ) -> Google_Protobuf_Timestamp {
@@ -312,7 +312,7 @@ public func + (
   return Google_Protobuf_Timestamp(seconds: s, nanos: n)
 }
 
-public func + (
+internal func + (
   lhs: Google_Protobuf_Duration,
   rhs: Google_Protobuf_Timestamp
 ) -> Google_Protobuf_Timestamp {
@@ -321,7 +321,7 @@ public func + (
   return Google_Protobuf_Timestamp(seconds: s, nanos: n)
 }
 
-public func - (
+internal func - (
   lhs: Google_Protobuf_Timestamp,
   rhs: Google_Protobuf_Duration
 ) -> Google_Protobuf_Timestamp {

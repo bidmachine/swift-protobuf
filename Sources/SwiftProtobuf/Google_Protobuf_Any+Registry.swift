@@ -103,7 +103,7 @@ extension Google_Protobuf_Any {
     ///
     /// Returns: true if the type was registered, false if something
     ///   else was already registered for the messageName.
-    @discardableResult public static func register(messageType: Message.Type) -> Bool {
+    @discardableResult internal static func register(messageType: Message.Type) -> Bool {
         let messageTypeName = messageType.protoMessageName
         var result: Bool = false
         execute(flags: .barrier) {
@@ -122,13 +122,13 @@ extension Google_Protobuf_Any {
     }
 
     /// Returns the Message.Type expected for the given type URL.
-    public static func messageType(forTypeURL url: String) -> Message.Type? {
+    internal static func messageType(forTypeURL url: String) -> Message.Type? {
       let messageTypeName = typeName(fromURL: url)
       return messageType(forMessageName: messageTypeName)
     }
 
     /// Returns the Message.Type expected for the given proto message name.
-    public static func messageType(forMessageName name: String) -> Message.Type? {
+    internal static func messageType(forMessageName name: String) -> Message.Type? {
         var result: Message.Type?
         execute(flags: .none) {
             result = knownTypes[name]

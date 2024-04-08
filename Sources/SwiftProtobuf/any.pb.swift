@@ -44,8 +44,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.ProtobufAPIVersionCheck {
-  struct _2: BidMachineModules.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachine.ProtobufAPIVersionCheck {
+  struct _2: BidMachine.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -134,8 +134,8 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.Protob
 ///       "@type": "type.googleapis.com/google.protobuf.Duration",
 ///       "value": "1.212s"
 ///     }
-public struct Google_Protobuf_Any {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Any {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -167,20 +167,20 @@ public struct Google_Protobuf_Any {
   ///
   /// Schemes other than `http`, `https` (or the empty scheme) might be
   /// used with implementation specific semantics.
-  public var typeURL: String {
+  internal var typeURL: String {
     get {return _storage._typeURL}
     set {_uniqueStorage()._typeURL = newValue}
   }
 
   /// Must be a valid serialized protocol buffer of the above specified type.
-  public var value: Data {
+  internal var value: Data {
     get {return _storage._value}
     set {_uniqueStorage()._value = newValue}
   }
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 
   internal var _storage = _StorageClass.defaultInstance
 }
@@ -193,9 +193,9 @@ extension Google_Protobuf_Any: @unchecked Sendable {}
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Any: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Any"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Any: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Any"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .standard(proto: "type_url"),
     2: .same(proto: "value"),
   ]
@@ -209,7 +209,7 @@ extension Google_Protobuf_Any: BidMachineModules.Message, BidMachineModules._Mes
     return _storage
   }
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
@@ -225,7 +225,7 @@ extension Google_Protobuf_Any: BidMachineModules.Message, BidMachineModules._Mes
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       try _storage.preTraverse()
       if !_storage._typeURL.isEmpty {
@@ -238,7 +238,7 @@ extension Google_Protobuf_Any: BidMachineModules.Message, BidMachineModules._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Any, rhs: Google_Protobuf_Any) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Any, rhs: Google_Protobuf_Any) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = lhs._storage.isEqualTo(other: rhs._storage)
       if !storagesAreEqual {return false}

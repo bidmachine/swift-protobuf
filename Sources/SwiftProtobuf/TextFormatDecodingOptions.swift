@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------
 
 /// Options for TextFormatDecoding.
-public struct TextFormatDecodingOptions {
+internal struct TextFormatDecodingOptions {
   /// The maximum nesting of message with messages.  The default is 100.
   ///
   /// To prevent corrupt or malicious messages from causing stack overflows,
   /// this controls how deep messages can be nested within other messages
   /// while parsing.
-  public var messageDepthLimit: Int = 100
+  internal var messageDepthLimit: Int = 100
 
-  public init() {}
+  internal init() {}
 }

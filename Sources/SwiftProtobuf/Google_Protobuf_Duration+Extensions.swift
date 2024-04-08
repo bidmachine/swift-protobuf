@@ -114,7 +114,7 @@ extension Google_Protobuf_Duration {
   ///
   /// - Parameter seconds: The number of seconds.
   /// - Parameter nanos: The number of nanoseconds.
-  public init(seconds: Int64 = 0, nanos: Int32 = 0) {
+  internal init(seconds: Int64 = 0, nanos: Int32 = 0) {
     self.init()
     self.seconds = seconds
     self.nanos = nanos
@@ -136,12 +136,12 @@ extension Google_Protobuf_Duration: _CustomJSONCodable {
 }
 
 extension Google_Protobuf_Duration: ExpressibleByFloatLiteral {
-  public typealias FloatLiteralType = Double
+  internal typealias FloatLiteralType = Double
 
   /// Creates a new `Google_Protobuf_Duration` from a floating point literal
   /// that is interpreted as a duration in seconds, rounded to the nearest
   /// nanosecond.
-  public init(floatLiteral value: Double) {
+  internal init(floatLiteral value: Double) {
     let sd = trunc(value)
     let nd = round((value - sd) * TimeInterval(nanosPerSecond))
     let (s, n) = normalizeForDuration(seconds: Int64(sd), nanos: Int32(nd))
@@ -154,7 +154,7 @@ extension Google_Protobuf_Duration {
   /// `TimeInterval` (measured in seconds), rounded to the nearest nanosecond.
   ///
   /// - Parameter timeInterval: The `TimeInterval`.
-  public init(timeInterval: TimeInterval) {
+  internal init(timeInterval: TimeInterval) {
     let sd = trunc(timeInterval)
     let nd = round((timeInterval - sd) * TimeInterval(nanosPerSecond))
     let (s, n) = normalizeForDuration(seconds: Int64(sd), nanos: Int32(nd))
@@ -162,7 +162,7 @@ extension Google_Protobuf_Duration {
   }
 
   /// The `TimeInterval` (measured in seconds) equal to this duration.
-  public var timeInterval: TimeInterval {
+  internal var timeInterval: TimeInterval {
     return TimeInterval(self.seconds) +
       TimeInterval(self.nanos) / TimeInterval(nanosPerSecond)
   }
@@ -195,7 +195,7 @@ private func normalizeForDuration(
   return (seconds: s, nanos: n)
 }
 
-public prefix func - (
+internal prefix func - (
   operand: Google_Protobuf_Duration
 ) -> Google_Protobuf_Duration {
   let (s, n) = normalizeForDuration(seconds: -operand.seconds,
@@ -203,7 +203,7 @@ public prefix func - (
   return Google_Protobuf_Duration(seconds: s, nanos: n)
 }
 
-public func + (
+internal func + (
   lhs: Google_Protobuf_Duration,
   rhs: Google_Protobuf_Duration
 ) -> Google_Protobuf_Duration {
@@ -212,7 +212,7 @@ public func + (
   return Google_Protobuf_Duration(seconds: s, nanos: n)
 }
 
-public func - (
+internal func - (
   lhs: Google_Protobuf_Duration,
   rhs: Google_Protobuf_Duration
 ) -> Google_Protobuf_Duration {
@@ -221,7 +221,7 @@ public func - (
   return Google_Protobuf_Duration(seconds: s, nanos: n)
 }
 
-public func - (
+internal func - (
   lhs: Google_Protobuf_Timestamp,
   rhs: Google_Protobuf_Timestamp
 ) -> Google_Protobuf_Duration {

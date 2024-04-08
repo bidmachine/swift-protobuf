@@ -16,7 +16,7 @@
 // don't remove unless obsolete on all platforms
 import Foundation
 
-public let defaultAnyTypeURLPrefix: String = "type.googleapis.com"
+internal let defaultAnyTypeURLPrefix: String = "type.googleapis.com"
 
 extension Google_Protobuf_Any {
   /// Initialize an Any object from the provided message.
@@ -37,7 +37,7 @@ extension Google_Protobuf_Any {
   ///     Defaults to "type.googleapis.com".
   /// - Throws: `BinaryEncodingError.missingRequiredFields` if `partial` is
   ///     false and `message` wasn't fully initialized.
-  public init(
+  internal init(
     message: Message,
     partial: Bool = false,
     typePrefix: String = defaultAnyTypeURLPrefix
@@ -59,7 +59,7 @@ extension Google_Protobuf_Any {
   ///     extensions in this message or messages nested within this message's
   ///     fields.
   /// - Throws: an instance of `TextFormatDecodingError` on failure.
-  public init(
+  internal init(
     textFormatString: String,
     extensions: ExtensionMap? = nil
   ) throws {
@@ -80,7 +80,7 @@ extension Google_Protobuf_Any {
   ///     extensions in this message or messages nested within this message's
   ///     fields.
   /// - Throws: an instance of `TextFormatDecodingError` on failure.
-  public init(
+  internal init(
     textFormatString: String,
     options: TextFormatDecodingOptions,
     extensions: ExtensionMap? = nil
@@ -114,16 +114,16 @@ extension Google_Protobuf_Any {
   ///
   /// - Parameter type: The concrete message type.
   /// - Returns: True if the receiver contains the given message type.
-  public func isA<M: Message>(_ type: M.Type) -> Bool {
+  internal func isA<M: Message>(_ type: M.Type) -> Bool {
     return _storage.isA(type)
   }
 
 #if swift(>=4.2)
-  public func hash(into hasher: inout Hasher) {
+  internal func hash(into hasher: inout Hasher) {
     _storage.hash(into: &hasher)
   }
 #else  // swift(>=4.2)
-  public var hashValue: Int {
+  internal var hashValue: Int {
     return _storage.hashValue
   }
 #endif  // swift(>=4.2)

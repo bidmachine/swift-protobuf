@@ -8,7 +8,7 @@
 //
 // -----------------------------------------------------------------------------
 ///
-/// Generated enums conform to BidMachineModules.Enum
+/// Generated enums conform to BidMachine.Enum
 ///
 /// See ProtobufTypes and JSONTypes for extension
 /// methods to support binary and JSON coding.
@@ -18,7 +18,7 @@
 // TODO: `Enum` should require `Sendable` but we cannot do so yet without possibly breaking compatibility.
 
 /// Generated enum types conform to this protocol.
-public protocol Enum: RawRepresentable, Hashable {
+internal protocol Enum: RawRepresentable, Hashable {
   /// Creates a new instance of the enum initialized to its default value.
   init()
 
@@ -42,11 +42,11 @@ public protocol Enum: RawRepresentable, Hashable {
 
 extension Enum {
 #if swift(>=4.2)
-  public func hash(into hasher: inout Hasher) {
+  internal func hash(into hasher: inout Hasher) {
     hasher.combine(rawValue)
   }
 #else  // swift(>=4.2)
-  public var hashValue: Int {
+  internal var hashValue: Int {
     return rawValue
   }
 #endif  // swift(>=4.2)

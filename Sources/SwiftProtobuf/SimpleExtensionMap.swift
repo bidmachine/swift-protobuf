@@ -14,25 +14,25 @@
 
 
 // Note: The generated code only relies on ExpressibleByArrayLiteral
-public struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, CustomDebugStringConvertible {
-    public typealias Element = AnyMessageExtension
+internal struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, CustomDebugStringConvertible {
+    internal typealias Element = AnyMessageExtension
 
     // Since type objects aren't Hashable, we can't do much better than this...
     internal var fields = [Int: Array<AnyMessageExtension>]()
 
-    public init() {}
+    internal init() {}
 
-    public init(arrayLiteral: Element...) {
+    internal init(arrayLiteral: Element...) {
         insert(contentsOf: arrayLiteral)
     }
 
-    public init(_ others: SimpleExtensionMap...) {
+    internal init(_ others: SimpleExtensionMap...) {
       for other in others {
         formUnion(other)
       }
     }
 
-    public subscript(messageType: Message.Type, fieldNumber: Int) -> AnyMessageExtension? {
+    internal subscript(messageType: Message.Type, fieldNumber: Int) -> AnyMessageExtension? {
         get {
             if let l = fields[fieldNumber] {
                 for e in l {
@@ -45,7 +45,7 @@ public struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, Custo
         }
     }
 
-    public func fieldNumberForProto(messageType: Message.Type, protoFieldName: String) -> Int? {
+    internal func fieldNumberForProto(messageType: Message.Type, protoFieldName: String) -> Int? {
         // TODO: Make this faster...
         for (_, list) in fields {
             for e in list {
@@ -57,7 +57,7 @@ public struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, Custo
         return nil
     }
 
-    public mutating func insert(_ newValue: Element) {
+    internal mutating func insert(_ newValue: Element) {
         let fieldNumber = newValue.fieldNumber
         if let l = fields[fieldNumber] {
             let messageType = newValue.messageType
@@ -69,13 +69,13 @@ public struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, Custo
         }
     }
 
-    public mutating func insert(contentsOf: [Element]) {
+    internal mutating func insert(contentsOf: [Element]) {
         for e in contentsOf {
             insert(e)
         }
     }
 
-    public mutating func formUnion(_ other: SimpleExtensionMap) {
+    internal mutating func formUnion(_ other: SimpleExtensionMap) {
         for (fieldNumber, otherList) in other.fields {
             if let list = fields[fieldNumber] {
                 var newList = list.filter {
@@ -92,13 +92,13 @@ public struct SimpleExtensionMap: ExtensionMap, ExpressibleByArrayLiteral, Custo
         }
     }
 
-    public func union(_ other: SimpleExtensionMap) -> SimpleExtensionMap {
+    internal func union(_ other: SimpleExtensionMap) -> SimpleExtensionMap {
         var out = self
         out.formUnion(other)
         return out
     }
 
-    public var debugDescription: String {
+    internal var debugDescription: String {
         var names = [String]()
         for (_, list) in fields {
             for e in list {

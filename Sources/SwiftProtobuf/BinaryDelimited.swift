@@ -16,9 +16,9 @@
 import Foundation
 
 /// Helper methods for reading/writing messages with a length prefix.
-public enum BinaryDelimited {
+internal enum BinaryDelimited {
   /// Additional errors for delimited message handing.
-  public enum Error: Swift.Error {
+  internal enum Error: Swift.Error {
     /// If a read/write to the stream fails, but the stream's `streamError` is nil,
     /// this error will be throw instead since the stream didn't provide anything
     /// more specific. A common cause for this can be failing to open the stream
@@ -47,7 +47,7 @@ public enum BinaryDelimited {
   /// - Throws: `BinaryEncodingError` if encoding fails, throws
   ///           `BinaryDelimited.Error` for some writing errors, or the
   ///           underlying `OutputStream.streamError` for a stream error.
-  public static func serialize(
+  internal static func serialize(
     message: Message,
     to stream: OutputStream,
     partial: Bool = false
@@ -107,7 +107,7 @@ public enum BinaryDelimited {
   /// - Throws: `BinaryDecodingError` if decoding fails, throws
   ///           `BinaryDelimited.Error` for some reading errors, and the
   ///           underlying InputStream.streamError for a stream error.
-  public static func parse<M: Message>(
+  internal static func parse<M: Message>(
     messageType: M.Type,
     from stream: InputStream,
     extensions: ExtensionMap? = nil,
@@ -148,7 +148,7 @@ public enum BinaryDelimited {
   /// - Throws: `BinaryDecodingError` if decoding fails, throws
   ///           `BinaryDelimited.Error` for some reading errors, and the
   ///           underlying InputStream.streamError for a stream error.
-  public static func merge<M: Message>(
+  internal static func merge<M: Message>(
     into message: inout M,
     from stream: InputStream,
     extensions: ExtensionMap? = nil,

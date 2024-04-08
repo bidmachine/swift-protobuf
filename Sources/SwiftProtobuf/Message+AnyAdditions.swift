@@ -34,7 +34,7 @@ extension Message {
   /// - Parameter options: The BinaryDecodingOptions to use.
   /// - Throws: an instance of `AnyUnpackError`, `JSONDecodingError`, or
   ///   `BinaryDecodingError` on failure.
-  public init(
+  internal init(
     unpackingAny: Google_Protobuf_Any,
     extensions: ExtensionMap? = nil,
     options: BinaryDecodingOptions = BinaryDecodingOptions()

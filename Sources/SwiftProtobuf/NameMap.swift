@@ -91,7 +91,7 @@ private let i_16777619 = Int(16777619)
 /// serialization (JSON and text).  These maps are lazily instantiated
 /// for each message as needed, so there is no run-time overhead for
 /// users who do not use text-based serialization formats.
-public struct _NameMap: ExpressibleByDictionaryLiteral {
+internal struct _NameMap: ExpressibleByDictionaryLiteral {
 
   /// An immutable interned string container.  The `utf8Start` pointer
   /// is guaranteed valid for the lifetime of the `NameMap` that you
@@ -141,7 +141,7 @@ public struct _NameMap: ExpressibleByDictionaryLiteral {
     }
     private var nameString: NameString
 
-    public var description: String {
+    internal var description: String {
       switch nameString {
       case .string(let s): return s
       case .staticString(let s): return s.description
@@ -149,13 +149,13 @@ public struct _NameMap: ExpressibleByDictionaryLiteral {
     }
 
   #if swift(>=4.2)
-    public func hash(into hasher: inout Hasher) {
+    internal func hash(into hasher: inout Hasher) {
       for byte in utf8Buffer {
         hasher.combine(byte)
       }
     }
   #else  // swift(>=4.2)
-    public var hashValue: Int {
+    internal var hashValue: Int {
       var h = i_2166136261
       for byte in utf8Buffer {
         h = (h ^ Int(byte)) &* i_16777619
@@ -164,7 +164,7 @@ public struct _NameMap: ExpressibleByDictionaryLiteral {
     }
   #endif  // swift(>=4.2)
 
-    public static func ==(lhs: Name, rhs: Name) -> Bool {
+    internal static func ==(lhs: Name, rhs: Name) -> Bool {
       if lhs.utf8Buffer.count != rhs.utf8Buffer.count {
         return false
       }
@@ -183,7 +183,7 @@ public struct _NameMap: ExpressibleByDictionaryLiteral {
   /// data that we store in the binary.
   ///
   /// These are only used in the generated code to initialize a NameMap.
-  public enum NameDescription {
+  internal enum NameDescription {
 
     /// The proto (text format) name and the JSON name are the same string.
     case same(proto: StaticString)
@@ -214,10 +214,10 @@ public struct _NameMap: ExpressibleByDictionaryLiteral {
   private var jsonToNumberMap: [Name: Int] = [:]
 
   /// Creates a new empty field/enum-case name/number mapping.
-  public init() {}
+  internal init() {}
 
   /// Build the bidirectional maps between numbers and proto/JSON names.
-  public init(dictionaryLiteral elements: (Int, NameDescription)...) {
+  internal init(dictionaryLiteral elements: (Int, NameDescription)...) {
     for (number, description) in elements {
       switch description {
 

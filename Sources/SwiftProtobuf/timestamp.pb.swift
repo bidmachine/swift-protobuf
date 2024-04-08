@@ -44,8 +44,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.ProtobufAPIVersionCheck {
-  struct _2: BidMachineModules.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachine.ProtobufAPIVersionCheck {
+  struct _2: BidMachine.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -138,25 +138,25 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: BidMachineModules.Protob
 /// the Joda Time's [`ISODateTimeFormat.dateTime()`](
 /// http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
 /// ) to obtain a formatter capable of generating timestamps in this format.
-public struct Google_Protobuf_Timestamp {
-  // BidMachineModules.Message conformance is added in an extension below. See the
+internal struct Google_Protobuf_Timestamp {
+  // BidMachine.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Represents seconds of UTC time since Unix epoch
   /// 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
   /// 9999-12-31T23:59:59Z inclusive.
-  public var seconds: Int64 = 0
+  internal var seconds: Int64 = 0
 
   /// Non-negative fractions of a second at nanosecond resolution. Negative
   /// second values with fractions must still have non-negative nanos values
   /// that count forward in time. Must be from 0 to 999,999,999
   /// inclusive.
-  public var nanos: Int32 = 0
+  internal var nanos: Int32 = 0
 
-  public var unknownFields = BidMachineModules.UnknownStorage()
+  internal var unknownFields = BidMachine.UnknownStorage()
 
-  public init() {}
+  internal init() {}
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -167,14 +167,14 @@ extension Google_Protobuf_Timestamp: @unchecked Sendable {}
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Timestamp: BidMachineModules.Message, BidMachineModules._MessageImplementationBase, BidMachineModules._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Timestamp"
-  public static let _protobuf_nameMap: BidMachineModules._NameMap = [
+extension Google_Protobuf_Timestamp: BidMachine.Message, BidMachine._MessageImplementationBase, BidMachine._ProtoNameProviding {
+  internal static let protoMessageName: String = _protobuf_package + ".Timestamp"
+  internal static let _protobuf_nameMap: BidMachine._NameMap = [
     1: .same(proto: "seconds"),
     2: .same(proto: "nanos"),
   ]
 
-  public mutating func decodeMessage<D: BidMachineModules.Decoder>(decoder: inout D) throws {
+  internal mutating func decodeMessage<D: BidMachine.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -187,7 +187,7 @@ extension Google_Protobuf_Timestamp: BidMachineModules.Message, BidMachineModule
     }
   }
 
-  public func traverse<V: BidMachineModules.Visitor>(visitor: inout V) throws {
+  internal func traverse<V: BidMachine.Visitor>(visitor: inout V) throws {
     if self.seconds != 0 {
       try visitor.visitSingularInt64Field(value: self.seconds, fieldNumber: 1)
     }
@@ -197,7 +197,7 @@ extension Google_Protobuf_Timestamp: BidMachineModules.Message, BidMachineModule
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Google_Protobuf_Timestamp, rhs: Google_Protobuf_Timestamp) -> Bool {
+  internal static func ==(lhs: Google_Protobuf_Timestamp, rhs: Google_Protobuf_Timestamp) -> Bool {
     if lhs.seconds != rhs.seconds {return false}
     if lhs.nanos != rhs.nanos {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

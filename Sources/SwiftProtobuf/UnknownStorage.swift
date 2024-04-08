@@ -23,24 +23,24 @@ import Foundation
 /// implementation or were valid field numbers but with mismatching wire
 /// formats (for example, a field encoded as a varint when a fixed32 integer
 /// was expected).
-public struct UnknownStorage: Equatable {
+internal struct UnknownStorage: Equatable {
   /// The raw protocol buffer binary-encoded bytes that represent the unknown
   /// fields of a decoded message.
-  public private(set) var data = Data()
+  internal private(set) var data = Data()
 
 #if !swift(>=4.1)
-  public static func ==(lhs: UnknownStorage, rhs: UnknownStorage) -> Bool {
+  internal static func ==(lhs: UnknownStorage, rhs: UnknownStorage) -> Bool {
     return lhs.data == rhs.data
   }
 #endif
 
-  public init() {}
+  internal init() {}
 
   internal mutating func append(protobufData: Data) {
     data.append(protobufData)
   }
 
-  public func traverse<V: Visitor>(visitor: inout V) throws {
+  internal func traverse<V: Visitor>(visitor: inout V) throws {
     if !data.isEmpty {
       try visitor.visitUnknown(bytes: data)
     }

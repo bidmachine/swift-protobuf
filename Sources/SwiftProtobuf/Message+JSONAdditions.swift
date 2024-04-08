@@ -25,7 +25,7 @@ extension Message {
   /// - Parameters:
   ///   - options: The JSONEncodingOptions to use.
   /// - Throws: `JSONEncodingError` if encoding fails.
-  public func jsonString(
+  internal func jsonString(
     options: JSONEncodingOptions = JSONEncodingOptions()
   ) throws -> String {
     if let m = self as? _CustomJSONCodable {
@@ -44,7 +44,7 @@ extension Message {
   /// - Parameters:
   ///   - options: The JSONEncodingOptions to use.
   /// - Throws: `JSONEncodingError` if encoding fails.
-  public func jsonUTF8Data(
+  internal func jsonUTF8Data(
     options: JSONEncodingOptions = JSONEncodingOptions()
   ) throws -> Data {
     if let m = self as? _CustomJSONCodable {
@@ -65,7 +65,7 @@ extension Message {
   /// - Parameter jsonString: The JSON-formatted string to decode.
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-    public init(
+    internal init(
     jsonString: String,
     options: JSONDecodingOptions = JSONDecodingOptions()
   ) throws {
@@ -79,7 +79,7 @@ extension Message {
   /// - Parameter extensions: An ExtensionMap for looking up extensions by name
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public init(
+  internal init(
     jsonString: String,
     extensions: ExtensionMap? = nil,
     options: JSONDecodingOptions = JSONDecodingOptions()
@@ -102,7 +102,7 @@ extension Message {
   ///   as UTF-8 encoded text.
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public init(
+  internal init(
     jsonUTF8Data: Data,
     options: JSONDecodingOptions = JSONDecodingOptions()
   ) throws {
@@ -118,7 +118,7 @@ extension Message {
   /// - Parameter extensions: The extension map to use with this decode
   /// - Parameter options: The JSONDecodingOptions to use.
   /// - Throws: `JSONDecodingError` if decoding fails.
-  public init(
+  internal init(
     jsonUTF8Data: Data,
     extensions: ExtensionMap? = nil,
     options: JSONDecodingOptions = JSONDecodingOptions()

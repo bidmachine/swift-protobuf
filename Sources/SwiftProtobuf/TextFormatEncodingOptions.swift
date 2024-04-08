@@ -13,10 +13,10 @@
 // -----------------------------------------------------------------------------
 
 /// Options for TextFormatEncoding.
-public struct TextFormatEncodingOptions {
+internal struct TextFormatEncodingOptions {
 
   /// Default: Do print unknown fields using numeric notation
-  public var printUnknownFields: Bool = true
+  internal var printUnknownFields: Bool = true
 
-  public init() {}
+  internal init() {}
 }

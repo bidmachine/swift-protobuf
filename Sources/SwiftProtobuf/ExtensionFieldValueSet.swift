@@ -16,10 +16,10 @@
 
 // TODO: `ExtensionFieldValueSet` should be `Sendable` but we cannot do so yet without possibly breaking compatibility.
 
-public struct ExtensionFieldValueSet: Hashable {
+internal struct ExtensionFieldValueSet: Hashable {
   fileprivate var values = [Int : AnyExtensionField]()
 
-  public static func ==(lhs: ExtensionFieldValueSet,
+  internal static func ==(lhs: ExtensionFieldValueSet,
                         rhs: ExtensionFieldValueSet) -> Bool {
     guard lhs.values.count == rhs.values.count else {
       return false
@@ -39,10 +39,10 @@ public struct ExtensionFieldValueSet: Hashable {
     return true
   }
 
-  public init() {}
+  internal init() {}
 
 #if swift(>=4.2)
-  public func hash(into hasher: inout Hasher) {
+  internal func hash(into hasher: inout Hasher) {
     // AnyExtensionField is not Hashable, and the Self constraint that would
     // add breaks some of the uses of it; so the only choice is to manually
     // mix things in. However, one must remember to do things in an order
@@ -57,7 +57,7 @@ public struct ExtensionFieldValueSet: Hashable {
     hasher.combine(hash)
   }
 #else  // swift(>=4.2)
-  public var hashValue: Int {
+  internal var hashValue: Int {
     var hash = 16777619
     for (fieldNumber, v) in values {
       // Note: This calculation cannot depend on the order of the items.
@@ -67,7 +67,7 @@ public struct ExtensionFieldValueSet: Hashable {
   }
 #endif  // swift(>=4.2)
 
-  public func traverse<V: Visitor>(visitor: inout V, start: Int, end: Int) throws {
+  internal func traverse<V: Visitor>(visitor: inout V, start: Int, end: Int) throws {
     let validIndexes = values.keys.filter {$0 >= start && $0 < end}
     for i in validIndexes.sorted() {
       let value = values[i]!
@@ -75,7 +75,7 @@ public struct ExtensionFieldValueSet: Hashable {
     }
   }
 
-  public subscript(index: Int) -> AnyExtensionField? {
+  internal subscript(index: Int) -> AnyExtensionField? {
     get { return values[index] }
     set { values[index] = newValue }
   }
@@ -86,7 +86,7 @@ public struct ExtensionFieldValueSet: Hashable {
     return try modifier(&values[index])
   }
 
-  public var isInitialized: Bool {
+  internal var isInitialized: Bool {
     for (_, v) in values {
       if !v.isInitialized {
         return false

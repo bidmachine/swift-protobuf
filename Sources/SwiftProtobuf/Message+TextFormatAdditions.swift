@@ -24,7 +24,7 @@ extension Message {
   ///
   /// - Returns: A string containing the text format serialization of the
   ///   message.
-  public func textFormatString() -> String {
+  internal func textFormatString() -> String {
     // This is implemented as a separate zero-argument function
     // to preserve binary compatibility.
     return textFormatString(options: TextFormatEncodingOptions())
@@ -39,7 +39,7 @@ extension Message {
   /// - Returns: A string containing the text format serialization of the message.
   /// - Parameters:
   ///   - options: The TextFormatEncodingOptions to use.
-  public func textFormatString(
+  internal func textFormatString(
     options: TextFormatEncodingOptions
   ) -> String {
     var visitor = TextFormatEncodingVisitor(message: self, options: options)
@@ -63,7 +63,7 @@ extension Message {
   ///     extensions in this message or messages nested within this message's
   ///     fields.
   /// - Throws: an instance of `TextFormatDecodingError` on failure.
-  public init(
+  internal init(
     textFormatString: String,
     extensions: ExtensionMap? = nil
   ) throws {
@@ -84,7 +84,7 @@ extension Message {
   ///     extensions in this message or messages nested within this message's
   ///     fields.
   /// - Throws: an instance of `TextFormatDecodingError` on failure.
-  public init(
+  internal init(
     textFormatString: String,
     options: TextFormatDecodingOptions,
     extensions: ExtensionMap? = nil

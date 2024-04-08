@@ -27,7 +27,7 @@ extension Message {
   /// - Returns: A `Data` value containing the binary serialization of the
   ///   message.
   /// - Throws: `BinaryEncodingError` if encoding fails.
-  public func serializedData(partial: Bool = false) throws -> Data {
+  internal func serializedData(partial: Bool = false) throws -> Data {
     if !partial && !isInitialized {
       throw BinaryEncodingError.missingRequiredFields
     }
@@ -85,7 +85,7 @@ extension Message {
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
   @inlinable
-  public init(
+  internal init(
     serializedData data: Data,
     extensions: ExtensionMap? = nil,
     partial: Bool = false,
@@ -115,7 +115,7 @@ extension Message {
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
   @inlinable
-  public init<Bytes: ContiguousBytes>(
+  internal init<Bytes: ContiguousBytes>(
     contiguousBytes bytes: Bytes,
     extensions: ExtensionMap? = nil,
     partial: Bool = false,
@@ -145,7 +145,7 @@ extension Message {
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
   @inlinable
-  public mutating func merge(
+  internal mutating func merge(
     serializedData data: Data,
     extensions: ExtensionMap? = nil,
     partial: Bool = false,
@@ -181,7 +181,7 @@ extension Message {
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
   @inlinable
-  public mutating func merge<Bytes: ContiguousBytes>(
+  internal mutating func merge<Bytes: ContiguousBytes>(
     contiguousBytes bytes: Bytes,
     extensions: ExtensionMap? = nil,
     partial: Bool = false,

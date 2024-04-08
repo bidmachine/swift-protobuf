@@ -229,7 +229,7 @@ private func decodeString(_ s: String) -> String? {
 }
 
 ///
-/// TextFormatScanner has no public members.
+/// TextFormatScanner has no internal members.
 ///
 internal struct TextFormatScanner {
     internal var extensions: ExtensionMap?

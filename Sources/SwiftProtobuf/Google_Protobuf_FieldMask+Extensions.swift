@@ -127,7 +127,7 @@ extension Google_Protobuf_FieldMask {
   ///
   /// - Parameter protoPaths: The paths from which to create the field mask,
   ///   defined using the .proto names for the fields.
-  public init(protoPaths: [String]) {
+  internal init(protoPaths: [String]) {
     self.init()
     paths = protoPaths
   }
@@ -139,7 +139,7 @@ extension Google_Protobuf_FieldMask {
   ///
   /// - Parameter protoPaths: The paths from which to create the field mask,
   ///   defined using the .proto names for the fields.
-  public init(protoPaths: String...) {
+  internal init(protoPaths: String...) {
     self.init(protoPaths: protoPaths)
   }
 
@@ -150,7 +150,7 @@ extension Google_Protobuf_FieldMask {
   ///
   /// - Parameter jsonPaths: The paths from which to create the field mask,
   ///   defined using the JSON names for the fields.
-  public init?(jsonPaths: String...) {
+  internal init?(jsonPaths: String...) {
     // TODO: This should fail if any of the conversions from JSON fails
     #if swift(>=4.1)
       self.init(protoPaths: jsonPaths.compactMap(JSONToProto))

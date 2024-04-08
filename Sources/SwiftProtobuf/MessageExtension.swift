@@ -18,7 +18,7 @@
 // TODO: `AnyMessageExtension` should require `Sendable` but we cannot do so yet without possibly breaking compatibility.
 
 /// Type-erased MessageExtension field implementation.
-public protocol AnyMessageExtension {
+internal protocol AnyMessageExtension {
     var fieldNumber: Int { get }
     var fieldName: String { get }
     var messageType: Message.Type { get }
@@ -28,16 +28,16 @@ public protocol AnyMessageExtension {
 /// A "Message Extension" relates a particular extension field to
 /// a particular message.  The generic constraints allow
 /// compile-time compatibility checks.
-public class MessageExtension<FieldType: ExtensionField, MessageType: Message>: AnyMessageExtension {
-    public let fieldNumber: Int
-    public let fieldName: String
-    public let messageType: Message.Type
-    public init(_protobuf_fieldNumber: Int, fieldName: String) {
+internal class MessageExtension<FieldType: ExtensionField, MessageType: Message>: AnyMessageExtension {
+    internal let fieldNumber: Int
+    internal let fieldName: String
+    internal let messageType: Message.Type
+    internal init(_protobuf_fieldNumber: Int, fieldName: String) {
         self.fieldNumber = _protobuf_fieldNumber
         self.fieldName = fieldName
         self.messageType = MessageType.self
     }
-    public func _protobuf_newField<D: Decoder>(decoder: inout D) throws -> AnyExtensionField? {
+    internal func _protobuf_newField<D: Decoder>(decoder: inout D) throws -> AnyExtensionField? {
         return try FieldType(protobufExtension: self, decoder: &decoder)
     }
 }
